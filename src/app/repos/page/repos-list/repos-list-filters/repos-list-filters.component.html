@@ -1,0 +1,36 @@
+<form [formGroup]="filterGroup" (ngSubmit)="filter()">
+  <label>
+    Name
+    <input
+      formControlName="name"
+      placeholder="Search by name"
+      type="text"
+      name="searchName"
+      id="searchName"
+      value=""
+    />
+  </label>
+  <label>
+    Minimal star amount
+    <input
+      formControlName="stars"
+      type="number"
+      min="0"
+      id="stars"
+      name="stars"
+      placeholder="minimum of star"
+    />
+  </label>
+  <label>
+    Issue contains
+    <input
+      formControlName="text"
+      type="text"
+      id="text"
+      name="text"
+      placeholder="text in repository issue"
+    />
+  </label>
+
+  <button type="submit">Filter Repository</button>
+</form>

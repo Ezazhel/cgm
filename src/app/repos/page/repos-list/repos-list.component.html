@@ -1,6 +1,10 @@
-<div>
-  <input #searchName type="text" name="searchName" id="searchName" value="" />
-  @for (repository of repositories().items; track $index) {
-    <app-repos-list-item [repository]="repository" />
-  }
+<div class="repos-list--container">
+  <app-repos-list-filters />
+  <div class="repos-list--items">
+    @for (repository of (repositories$ | async)?.items; track $index) {
+      <app-repos-list-item [repository]="repository" />
+    } @empty {
+      Type the name of repositories to find them here.
+    }
+  </div>
 </div>

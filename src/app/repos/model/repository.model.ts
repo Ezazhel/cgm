@@ -3,4 +3,5 @@ export interface Repository {
   name: string;
   open_issues: number;
   id: number;
+  language: string;
 }

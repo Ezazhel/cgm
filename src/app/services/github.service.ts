@@ -15,6 +15,9 @@ export class GithubService {
 
   getRepos(filters?: GetReposRequest): Observable<any> {
     const query = `${filters?.name} in:name`;
+    // stars:>=n
+    // language:LANGUAGE
+
     return fromPromise(
       this.octokit.request('GET /search/repositories', { q: query }),
     ).pipe(
