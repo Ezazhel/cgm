@@ -30,4 +30,6 @@ We could add a state instead of passing queryParams from /repos to /commits
 
 We could also implement a loading skeleton and a better default state on page when the user hasn't search anything
 
+Github api return by default 30 items with a maximum of 100 items, we should implement a pagination service / pagination component to display more data. The pagination doesn't need to be filter, it could be a component property
+
 **But this is was out of the scope**

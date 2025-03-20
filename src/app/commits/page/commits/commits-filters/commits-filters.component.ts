@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   template: `
     <label>
       Search by content
-      <input type="search" (search)="filter($event)" />
+      <input
+        type="search"
+        (search)="filter($event)"
+        data-testId="searchParams"
+      />
     </label>
   `,
   styles: [':host { display: block}'],

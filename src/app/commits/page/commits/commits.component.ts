@@ -5,18 +5,11 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { GithubService } from '../../../services/github.service';
 import { CommitComponent } from './commit/commit.component';
 import { ActivatedRoute } from '@angular/router';
-import {
-  defer,
-  filter,
-  Observable,
-  switchMap,
-  tap,
-  withLatestFrom,
-} from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { GithubApi } from '../../../core/services/github-service/github-api.model';
 
 @Component({
   templateUrl: './commits.component.html',
@@ -26,11 +19,12 @@ import { AsyncPipe } from '@angular/common';
 })
 export class CommitsComponent {
   public readonly repo = input.required<string>();
-  private readonly github = inject(GithubService);
+  private readonly github = inject(GithubApi);
   private readonly activatedRoute = inject(ActivatedRoute);
-  public search = signal<boolean>(false); //used to display default message when user has not search, could be improve via directive
+  public hasSearch = signal<boolean>(false); //used to display default message when user has not search, could be improve via directive
 
   public readonly commits$ = this.activatedRoute.queryParams.pipe(
     switchMap((params) => this.github.searchCommits(this.repo(), params['q'])),
+    tap(() => this.hasSearch.set(true)),
   );
 }

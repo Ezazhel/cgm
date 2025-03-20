@@ -4,12 +4,12 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { GithubService } from '../../../services/github.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { GetReposRequest } from '../../../services/github-request.model';
-import { finalize, switchMap } from 'rxjs';
+import { GetReposRequest } from '../../../core/services/github-service/github-request.model';
+import { finalize, switchMap, tap } from 'rxjs';
 import { RepositoryComponent } from './repository/repository.component';
+import { GithubApi } from '../../../core/services/github-service/github-api.model';
 
 @Component({
   imports: [CommonModule, RepositoryComponent],
@@ -19,11 +19,13 @@ import { RepositoryComponent } from './repository/repository.component';
 })
 export class RepositoriesComponent {
   private readonly router = inject(ActivatedRoute);
-  private readonly github = inject(GithubService);
+  private readonly github = inject(GithubApi);
 
   public hasSearch = signal(false);
   public repositories$ = this.router.queryParams.pipe(
     switchMap((params) => this.github.getRepos(params as GetReposRequest)),
-    finalize(() => this.hasSearch.set(true)),
+    tap(() => {
+      this.hasSearch.set(true);
+    }),
   );
 }

@@ -4,5 +4,5 @@ export interface RepositoriesFiltersForm {
   name: FormControl<string | null>;
   issueTitle: FormControl<string | null>;
   language: FormControl<string | null>;
-  stars: FormControl<number | null>;
+  stars: FormControl<string | number | null>;
 }

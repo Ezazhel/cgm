@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
-import { GithubService } from '../../services/github.service';
 import { ActivatedRouteSnapshot, Router, RouterState } from '@angular/router';
-import { tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
+import { GithubApi } from '../../core/services/github-service/github-api.model';
 
 /**
  * Check if a repo exist when accessing the /commits page.
@@ -9,13 +9,14 @@ import { tap } from 'rxjs';
  */
 export const repoExist = (
   route: ActivatedRouteSnapshot,
-  state: RouterState,
-) => {
+): Observable<boolean> => {
   const router = inject(Router);
-  const github = inject(GithubService);
+  const github = inject(GithubApi);
   const { repo } = route.queryParams;
-  if (repo == null) return router.navigateByUrl('/repos');
-
+  if (repo == null) {
+    router.navigateByUrl('/repos');
+    return of(false);
+  }
   return github
     .checkRepoExist(repo)
     .pipe(tap((exist) => exist || router.navigateByUrl('/repos')));

@@ -6,7 +6,7 @@
       <app-commit [commit]="commit"></app-commit>
     </li>
   } @empty {
-    @if (!search()) {
+    @if (!hasSearch()) {
       <h2>Use the filter to search commits</h2>
     } @else {
       <h2>No commits found with current filters</h2>

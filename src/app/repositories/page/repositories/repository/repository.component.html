@@ -4,12 +4,13 @@
   [queryParams]="{
     repo: repository().owner?.login + '/' + repository().name,
   }"
+  data-testid="repository-link"
 >
   <div class="row-item--container">
     <img class="avatar" [src]="repository().owner?.avatar_url" />
     <div class="row--information">
       @if (repository().language) {
-        <div class="row--badge">
+        <div class="row--badge" data-testid="language-badge">
           <span>{{ repository().language }}</span>
         </div>
       }

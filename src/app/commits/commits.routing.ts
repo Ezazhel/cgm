@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { CommitsComponent } from './page/commits/commits.component';
 import { CommitsFilterComponent } from './page/commits/commits-filters/commits-filters.component';
-import { repoExist } from './guard/repo-exist';
+import { repoExist } from './guard/repo-exist.guard';
 
 /*
   We use another outlet to display the filter, is it necessary ?
