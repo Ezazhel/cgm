@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

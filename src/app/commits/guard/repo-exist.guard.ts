@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterState } from '@angular/router';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Observable, of, tap } from 'rxjs';
 import { GithubApi } from '../../core/services/github-service/github-api.model';
 
 /**

@@ -2,7 +2,6 @@
 This app use Angular 19, signal / observable / guard and urlParams communication between components.
 
 # Structure
-
 This app is divided in two feature folders : commits | repositories
 Each feature contains : its model | guard | route | page
   ### Model
@@ -16,7 +15,7 @@ Each feature contains : its model | guard | route | page
     A page folder contain its children component, no need to create a shared component folder in the feature if those components won't be used by an other page
 
 ## How to use this app
-In order to use this app you will need to create an environment.local.ts in the environments folder.
+In order to use this app you **will need to create an environment.local.ts in the environments folder**.
 
 This environment.local.ts must follow Environment interface. You must provide a Github Key to use the github api.
 
