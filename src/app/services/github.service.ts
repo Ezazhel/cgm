@@ -13,10 +13,12 @@ export class GithubService {
     auth: environment.GITHUB_TOKEN,
   });
 
-  getRepos(filters?: GetReposRequest): Observable<any> {
-    const query = `${filters?.name} in:name`;
-    // stars:>=n
-    // language:LANGUAGE
+  getRepos(filters?: GetReposRequest) {
+    const filterName = filters?.name && `${filters.name} in:name`;
+    const filterStar = filters?.stars && `stars:>=${filters.stars}`;
+    const filterLanguage = filters?.language && `language:${filters.language}`;
+    const query = [filterName, filterStar, filterLanguage].join(' ').trim();
+    if (!query) return of({ items: [] });
 
     return fromPromise(
       this.octokit.request('GET /search/repositories', { q: query }),
