@@ -1,0 +1,6 @@
+<div>
+  <input #searchName type="text" name="searchName" id="searchName" value="" />
+  @for (repository of repositories().items; track $index) {
+    <app-repos-list-item [repository]="repository" />
+  }
+</div>
