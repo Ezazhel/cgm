@@ -9,6 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { RepositoriesFiltersForm } from '../../../model/repository-filter-form.model';
 
 @Component({
   selector: 'app-repositories-filters',
@@ -18,9 +19,9 @@ import { filter } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RepositoriesFiltersComponent {
-  public filterGroup = new FormGroup({
+  public filterGroup = new FormGroup<RepositoriesFiltersForm>({
     name: new FormControl<string>(''),
-    text: new FormControl<string>(''),
+    issueTitle: new FormControl<string>(''),
     language: new FormControl<string>(''),
     stars: new FormControl<number>(0),
   });

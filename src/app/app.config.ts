@@ -7,7 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding()), //with component input allow us to retrieve queryParams without the use of ActivatedRoutedSnapshot
     provideHttpClient(),
   ],
 };

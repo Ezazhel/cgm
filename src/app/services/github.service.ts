@@ -1,11 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Octokit } from '@octokit/core';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import { fromPromise } from 'rxjs/internal/observable/innerFrom';
 import { environment } from '../../environments/environment';
 import { GetReposRequest } from './github-request.model';
 
+/**
+ * This service allow the user to search data via github api
+ * we use Octokit an official lib for github api removing a lot of implementation
+ */
 @Injectable({ providedIn: 'root' })
 export class GithubService {
   private octokit = new Octokit({
@@ -16,7 +19,11 @@ export class GithubService {
     const filterName = filters?.name && `${filters.name} in:name`;
     const filterStar = filters?.stars && `stars:>=${filters?.stars}`;
     const filterLanguage = filters?.language && `language:${filters.language}`;
-    const query = [filterName, filterStar, filterLanguage].join(' ').trim();
+    const filterIssues =
+      filters?.issueTitle && `${filters.issueTitle} in:issues-title`;
+    const query = [filterName, filterStar, filterLanguage, filterIssues]
+      .join(' ')
+      .trim();
     if (!query) return of({ items: [] });
 
     return fromPromise(

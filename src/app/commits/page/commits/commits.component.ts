@@ -28,7 +28,8 @@ export class CommitsComponent {
   public readonly repo = input.required<string>();
   private readonly github = inject(GithubService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  public search = signal<boolean>(false);
+  public search = signal<boolean>(false); //used to display default message when user has not search, could be improve via directive
+
   public readonly commits$ = this.activatedRoute.queryParams.pipe(
     switchMap((params) => this.github.searchCommits(this.repo(), params['q'])),
   );

@@ -1,9 +1,13 @@
 import { inject } from '@angular/core';
 import { GithubService } from '../../services/github.service';
 import { ActivatedRouteSnapshot, Router, RouterState } from '@angular/router';
-import { map, of, switchMap, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
-export const commitExist = (
+/**
+ * Check if a repo exist when accessing the /commits page.
+ * If it doesn't then we navigate back to /repos
+ */
+export const repoExist = (
   route: ActivatedRouteSnapshot,
   state: RouterState,
 ) => {

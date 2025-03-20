@@ -1,59 +1,23 @@
-# CgmTechnical
+# What can you find in this app
+This app use Angular 19, signal / observable / guard and urlParams communication between components.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+# Structure
 
-## Development server
+This app is divided in two feature folders : commits | repositories
+Each feature contains : its model | guard | route | page
+  ### Model
+    Interface used by the application
+  ### Guard
+    Used to allow access on a page
+  ### Route
+    Entry points of a feature
+  ### Page
+    A page is a component used as an access point by the application.
+    A page folder contain its children component, no need to create a shared component folder in the feature if those components won't be used by an other page
 
-To start a local development server, run:
+## How to use this app
+In order to use this app you will need to create an environment.local.ts in the environments folder.
 
-```bash
-ng serve
-```
+This environment.local.ts must follow Environment interface. You must provide a Github Key to use the github api.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Here is more information on how to create a key : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
