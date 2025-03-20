@@ -1,5 +1,5 @@
 <ul>
-  @for (repository of (repositories$ | async)?.items; track $index) {
+  @for (repository of repositories$ | async; track $index) {
     <li>
       <app-repository [repository]="repository" />
     </li>
