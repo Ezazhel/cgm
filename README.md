@@ -22,6 +22,9 @@ This environment.local.ts must follow Environment interface. You must provide a 
 
 Here is more information on how to create a key : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 
+### Known issue 
+It happens search/repositories in:name search on the full_name property.
+If you try to filter using name=jquery and issues title contains test you'll receive "testswarm" repositories. The fullname of this repo is : jquery/testswarm
 
 ### Improvement
 This app could be improve by re-using components between feature (we re-use stylesheet but we could have component||directive instead)
@@ -31,5 +34,7 @@ We could add a state instead of passing queryParams from /repos to /commits
 We could also implement a loading skeleton and a better default state on page when the user hasn't search anything
 
 Github api return by default 30 items with a maximum of 100 items, we should implement a pagination service / pagination component to display more data. The pagination doesn't need to be filter, it could be a component property
+
+We could add a highlight pipe to hightlight commit-message matching filter params. But the child component should be aware of the filter (passed by the parent or from input binding) 
 
 **But this is was out of the scope**

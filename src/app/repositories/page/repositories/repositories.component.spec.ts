@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 class MockGitHub implements GithubApi {
   getRepos(filters: GetReposRequest): Observable<any> {
-    return Object.keys(filters).length ? of(true) : of();
+    return Object.keys(filters).length ? of([]) : of();
   }
   searchCommits(repo: string, searchParams: string): Observable<any> {
     throw new Error('Method not implemented.');

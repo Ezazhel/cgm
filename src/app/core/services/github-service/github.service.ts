@@ -27,6 +27,7 @@ export class GithubService implements GithubApi {
     const query = [filterName, filterStar, filterLanguage, filterIssues]
       .join(' ')
       .trim();
+
     if (!query) return of([]);
 
     return fromPromise(
@@ -40,11 +41,8 @@ export class GithubService implements GithubApi {
   }
 
   searchCommits(repo: string, searchParams: string): Observable<Commit[]> {
-    console.log(repo);
-    console.log(searchParams);
     if (!searchParams) return of();
     const query = `${searchParams}+repo:${repo}`;
-    console.log(query);
     return fromPromise(
       this.octokit.request('GET /search/commits', {
         q: query,

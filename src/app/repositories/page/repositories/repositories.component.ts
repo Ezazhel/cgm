@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { GetReposRequest } from '../../../core/services/github-service/github-request.model';
-import { finalize, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { RepositoryComponent } from './repository/repository.component';
 import { GithubApi } from '../../../core/services/github-service/github-api.model';
 
