@@ -23,7 +23,11 @@ export class RepositoriesComponent {
 
   public hasSearch = signal(false);
   public repositories$ = this.router.queryParams.pipe(
-    switchMap((params) => this.github.getRepos(params as GetReposRequest)),
+    switchMap((params) =>
+      Object.hasOwn(params, 'issueTitle')
+        ? this.github.getReposFromIssueTitle(params['issueTitle'])
+        : this.github.getRepos(params as GetReposRequest),
+    ),
     tap(() => {
       this.hasSearch.set(true);
     }),

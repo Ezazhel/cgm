@@ -17,4 +17,6 @@ export abstract class GithubApi {
   ): Observable<Commit[]>;
 
   abstract checkRepoExist(repository: string): Observable<boolean>;
+
+  abstract getReposFromIssueTitle(issueTitle: string): Observable<Repository[]>;
 }

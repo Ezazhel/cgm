@@ -8,7 +8,5 @@ export interface Repository {
   owner: GitHubUser | null;
   created_at: string;
   name: string;
-  open_issues: number;
-  id: number;
   language: string | null;
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="filterGroup" (ngSubmit)="filter()">
+<form [formGroup]="repositoriesFilterGroup" (ngSubmit)="filterRepository()">
   <label>
     Name
     <input
@@ -30,6 +30,11 @@
       placeholder="minimum of star"
     />
   </label>
+  <button type="submit">Filter Repository</button>
+</form>
+
+<hr />
+<form [formGroup]="issuesFilterGroup" (ngSubmit)="filterIssues()">
   <label>
     Issues Title contains
     <input
@@ -39,7 +44,7 @@
       name="issueTitle"
       placeholder="text in repository issues"
     />
+    <span>This filter will erase your previous filters</span>
   </label>
-
-  <button type="submit">Filter Repository</button>
+  <button type="submit">Filter Issues</button>
 </form>

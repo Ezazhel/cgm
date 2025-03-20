@@ -1,28 +1,13 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, provideRouter, Router } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { repoExist } from './repo-exist.guard';
-import { Observable, of } from 'rxjs';
+
 import { provideLocationMocks } from '@angular/common/testing';
 import { GithubApi } from '../../core/services/github-service/github-api.model';
-import { GetReposRequest } from '../../core/services/github-service/github-request.model';
-import { Repository } from '../../repositories/model/repository.model';
-import { Commit } from '../model/commit.model';
+import { MockGitHub } from '../../core/spec-helper/mockup-github.service';
 
-@Injectable()
-class MockupGithub implements GithubApi {
-  getRepos(filters?: GetReposRequest): Observable<Repository[]> {
-    throw new Error('Method not implemented.');
-  }
-  searchCommits(repo: string, searchParams: string): Observable<Commit[]> {
-    throw new Error('Method not implemented.');
-  }
-  checkRepoExist(repository: string): Observable<boolean> {
-    if (repository === 'redirect') return of(false);
-    return of(true);
-  }
-}
 @Component({})
 class TestComponent {}
 describe('Repo Exist', () => {
@@ -39,7 +24,7 @@ describe('Repo Exist', () => {
           },
         ]),
         provideLocationMocks(),
-        { provide: GithubApi, useClass: MockupGithub },
+        { provide: GithubApi, useClass: MockGitHub },
       ],
     });
     harness = await RouterTestingHarness.create();

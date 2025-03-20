@@ -20,24 +20,27 @@ describe('Repositories Filter', () => {
     const component = fixture.componentInstance;
     const router = TestBed.inject(Router);
     fixture.detectChanges();
-    component.filter();
+    component.filterRepository();
     expect(component).toBeDefined();
     expect(router.url).toEqual('/');
-    component.filterGroup.patchValue({
-      issueTitle: 'issue',
+    component.repositoriesFilterGroup.patchValue({
       name: 'name',
     });
-    component.filter();
+    component.filterRepository();
     tick();
-    expect(router.url).toEqual('/?name=name&issueTitle=issue');
-    component.filterGroup.patchValue({
+    expect(router.url).toEqual('/?name=name');
+    component.repositoriesFilterGroup.patchValue({
       language: 'language',
     });
-    component.filter();
+    component.filterRepository();
     tick();
-    expect(router.url).toEqual(
-      '/?name=name&issueTitle=issue&language=language',
-    );
+    expect(router.url).toEqual('/?name=name&language=language');
+    component.issuesFilterGroup.patchValue({
+      issueTitle: 'issue',
+    });
+    component.filterIssues();
+    tick();
+    expect(router.url).toEqual('/?issueTitle=issue');
   }));
 
   it('should set form with value from url', async () => {
@@ -46,10 +49,12 @@ describe('Repositories Filter', () => {
       'filters?name=name&language=javascript&issueTitle=title&stars=5',
       RepositoriesFiltersComponent,
     );
-    expect(component.filterGroup.value).toEqual({
+    expect(component.repositoriesFilterGroup.value).toEqual({
       name: 'name',
       language: 'javascript',
       stars: '5', //params passed by query are converted to string in patchValue if we want to keep typeof we should implement a logic
+    });
+    expect(component.issuesFilterGroup.value).toEqual({
       issueTitle: 'title',
     });
   });

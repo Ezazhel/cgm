@@ -3,26 +3,8 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { CommitsComponent } from './commits.component';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { GithubApi } from '../../../core/services/github-service/github-api.model';
-import { Observable, of } from 'rxjs';
-import { GetReposRequest } from '../../../core/services/github-service/github-request.model';
-import { Repository } from '../../../repositories/model/repository.model';
-import { Commit } from '../../model/commit.model';
-import { Injectable } from '@angular/core';
 import { provideLocationMocks } from '@angular/common/testing';
-
-@Injectable()
-class MockGithub implements GithubApi {
-  getRepos(filters?: GetReposRequest): Observable<Repository[]> {
-    throw new Error('Method not implemented.');
-  }
-  searchCommits(repo: string, searchParams?: string): Observable<Commit[]> {
-    if (!searchParams) return of();
-    return of([]);
-  }
-  checkRepoExist(repository: string): Observable<boolean> {
-    throw new Error('Method not implemented.');
-  }
-}
+import { MockGitHub } from '../../../core/spec-helper/mockup-github.service';
 
 describe('Commits components', () => {
   let harness: RouterTestingHarness;
@@ -35,7 +17,7 @@ describe('Commits components', () => {
           [{ path: 'commits', component: CommitsComponent }],
           withComponentInputBinding(),
         ),
-        { provide: GithubApi, useClass: MockGithub },
+        { provide: GithubApi, useClass: MockGitHub },
       ],
     });
     searchCommitsSpy = spyOn(

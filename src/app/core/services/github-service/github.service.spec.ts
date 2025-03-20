@@ -7,13 +7,12 @@ describe('Github service', () => {
     service
       .getRepos({
         name: 'name',
-        issueTitle: 'title',
         language: 'javascript',
         stars: '5',
       })
       .subscribe();
     expect(request).toHaveBeenCalledOnceWith('GET /search/repositories', {
-      q: 'name in:name stars:>=5 language:javascript title in:issues-title',
+      q: 'name in:name stars:>=5 language:javascript',
     });
   });
 
@@ -33,6 +32,15 @@ describe('Github service', () => {
     service.searchCommits('owner/repo', 'search').subscribe();
     expect(request).toHaveBeenCalledWith('GET /search/commits', {
       q: 'search+repo:owner/repo',
+    });
+  });
+
+  it('should get issues based on title', () => {
+    const service = new GithubService();
+    const request = spyOn(service['octokit'], 'request').and.callThrough();
+    service.getReposFromIssueTitle('issueTitle').subscribe();
+    expect(request).toHaveBeenCalledWith('GET /search/issues', {
+      q: 'issueTitle in:title type:issue',
     });
   });
 });

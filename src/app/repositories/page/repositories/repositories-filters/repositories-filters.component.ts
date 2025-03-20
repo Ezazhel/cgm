@@ -13,13 +13,15 @@ import { RepositoriesFiltersForm } from '../../../model/repository-filter-form.m
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RepositoriesFiltersComponent {
-  public filterGroup = new FormGroup<RepositoriesFiltersForm>({
+  public repositoriesFilterGroup = new FormGroup<RepositoriesFiltersForm>({
     name: new FormControl<string>(''),
-    issueTitle: new FormControl<string>(''),
     language: new FormControl<string>(''),
     stars: new FormControl<number>(0),
   });
 
+  public issuesFilterGroup = new FormGroup({
+    issueTitle: new FormControl<string>(''),
+  });
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
@@ -30,16 +32,30 @@ export class RepositoriesFiltersComponent {
         filter((params) => Object.keys(params).length > 0),
       )
       .subscribe((params) => {
-        this.filterGroup.patchValue(params);
+        this.repositoriesFilterGroup.patchValue(params);
+        this.issuesFilterGroup.patchValue({
+          issueTitle: params['issueTitle'],
+        });
       });
   }
-  filter() {
+  filterRepository() {
     let queryParams: any = {};
-    Object.entries(this.filterGroup.value).forEach(([nextKey, nextValue]) => {
-      if (nextValue) {
-        queryParams[nextKey] = nextValue;
-      }
-    });
-    this.router.navigate([], { queryParams });
+    Object.entries(this.repositoriesFilterGroup.value).forEach(
+      ([nextKey, nextValue]) => {
+        if (nextValue) {
+          queryParams[nextKey] = nextValue;
+        }
+      },
+    );
+    this.issuesFilterGroup.reset();
+    this.router.navigate([], { queryParams, queryParamsHandling: 'replace' });
+  }
+
+  filterIssues() {
+    const queryParams = {
+      issueTitle: this.issuesFilterGroup.value.issueTitle,
+    };
+    this.repositoriesFilterGroup.reset();
+    this.router.navigate([], { queryParams, queryParamsHandling: 'replace' });
   }
 }
