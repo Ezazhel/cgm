@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="row-item--container">
+    <img class="avatar" [src]="commit().author?.avatar_url" />
+    <div class="row--information">
+      <div>{{ commit().author?.login }}</div>
+      <a [href]="commit().url" target="_blank">{{ commit().url }}</a>
+      <div class="row--primaryInfo">{{ commit().commit.message }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h1>You are inspecting repository : {{ repo() }}</h1>
+
+<ul>
+  @for (commit of commits$ | async; track $index) {
+    <li>
+      <app-commit [commit]="commit"></app-commit>
+    </li>
+  } @empty {
+    @if (!search()) {
+      <h2>Use the filter to search commits</h2>
+    } @else {
+      <h2>No commits found with current filters</h2>
+    }
+  }
+</ul>

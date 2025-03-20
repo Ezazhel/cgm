@@ -1,0 +1,13 @@
+<ul>
+  @for (repository of (repositories$ | async)?.items; track $index) {
+    <li>
+      <app-repository [repository]="repository" />
+    </li>
+  } @empty {
+    @if (hasSearch()) {
+      <h1>No result were found, you should update your filters.</h1>
+    } @else {
+      <h1>You can search repositories using the provided filters.</h1>
+    }
+  }
+</ul>

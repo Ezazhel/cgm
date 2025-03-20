@@ -1,1 +1,11 @@
-<router-outlet />
+<nav class="navbar">
+  <a [routerLink]="['repos']">Repos</a>
+</nav>
+<div class="main--content">
+  <div class="filters">
+    <router-outlet name="filter" />
+  </div>
+  <div>
+    <router-outlet />
+  </div>
+</div>

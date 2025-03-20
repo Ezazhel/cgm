@@ -3,3 +3,87 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+ul {
+  list-style: none;
+}
+label {
+  line-height: 2rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  input {
+    display: block;
+    width: 100%;
+  }
+}
+input {
+  height: 24px;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  background-color: hsl(205, 70%, 30%);
+  line-height: 1.5rem;
+  color: white;
+  border-radius: 4px;
+  outline: none;
+}
+
+.avatar {
+  border-radius: 100%;
+  max-width: 72px;
+  max-height: 72px;
+}
+
+.row {
+  display: block;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 8px;
+  &:hover {
+    transform: scale(1.005);
+    z-index: 1000;
+    box-shadow:
+      rgba(50, 50, 93, 0.5) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.6) 0px 3px 7px -3px;
+  }
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.row-item--container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: auto 1fr;
+  place-items: start start;
+  position: relative;
+  .row--information {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    position: relative;
+    .row--name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 2rem;
+      text-overflow: ellipsis;
+      max-width: 120ch;
+    }
+
+    .row--badge {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: 1px solid hsl(0deg, 0%, 5%);
+      background-color: black;
+      padding: 0 0.5rem;
+      border-radius: 1rem;
+      span {
+        color: white;
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

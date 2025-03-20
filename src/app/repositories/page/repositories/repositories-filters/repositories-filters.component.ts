@@ -11,13 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'app-repos-list-filters',
+  selector: 'app-repositories-filters',
   imports: [ReactiveFormsModule],
-  templateUrl: './repos-list-filters.component.html',
-  styleUrl: './repos-list-filters.component.scss',
+  templateUrl: './repositories-filters.component.html',
+  styleUrl: './repositories-filters.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReposListFiltersComponent {
+export class RepositoriesFiltersComponent {
   public filterGroup = new FormGroup({
     name: new FormControl<string>(''),
     text: new FormControl<string>(''),

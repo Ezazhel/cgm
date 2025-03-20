@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-items: end;
+  gap: 1rem;
+}

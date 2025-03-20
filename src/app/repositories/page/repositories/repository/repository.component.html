@@ -1,0 +1,22 @@
+<a
+  class="row"
+  [routerLink]="['/commits']"
+  [queryParams]="{
+    repo: repository().owner?.login + '/' + repository().name,
+  }"
+>
+  <div class="row-item--container">
+    <img class="avatar" [src]="repository().owner?.avatar_url" />
+    <div class="row--information">
+      @if (repository().language) {
+        <div class="row--badge">
+          <span>{{ repository().language }}</span>
+        </div>
+      }
+      <div class="row--primaryInfo">
+        <span>{{ repository().name }}</span>
+      </div>
+      <div>{{ repository().created_at | date }}</div>
+    </div>
+  </div>
+</a>
