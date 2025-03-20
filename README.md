@@ -21,3 +21,13 @@ In order to use this app you will need to create an environment.local.ts in the 
 This environment.local.ts must follow Environment interface. You must provide a Github Key to use the github api.
 
 Here is more information on how to create a key : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
+
+
+### Improvement
+This app could be improve by re-using components between feature (we re-use stylesheet but we could have component||directive instead)
+
+We could add a state instead of passing queryParams from /repos to /commits
+
+We could also implement a loading skeleton and a better default state on page when the user hasn't search anything
+
+**But this is was out of the scope**
