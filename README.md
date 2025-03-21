@@ -17,9 +17,14 @@ Each feature contains : its model | guard | route | page
 ## How to use this app
 In order to use this app you **will need to create an environment.local.ts in the environments folder**.
 
-This environment.local.ts must follow Environment interface. You must provide a Github Key to use the github api.
+   ```
+  export const environment = {
+    GITHUB_TOKEN: ''
+  };
+  ```
+This environment.local.ts must follow Environment interface. You must provide a Github Token to use the github api.
 
-Here is more information on how to create a key : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
+Here is more information on how to create a token : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 
 In terminal launch : npm run start script
 
