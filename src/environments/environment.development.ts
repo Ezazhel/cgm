@@ -1,5 +1,5 @@
-import { Environment } from "./environment.model";
+import { Environment } from './environment.model';
 
 export const environment: Environment = {
-  GITHUB_TOKEN: ''
+  GITHUB_TOKEN: '',
 };
