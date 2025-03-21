@@ -21,6 +21,8 @@ This environment.local.ts must follow Environment interface. You must provide a 
 
 Here is more information on how to create a key : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 
+In terminal launch : npm run start script
+
 ### Known issue 
 It happens search/repositories in:name search on the full_name property.
 If you try to filter using name=jquery and issues title contains test you'll receive "testswarm" repositories. The fullname of this repo is : jquery/testswarm
